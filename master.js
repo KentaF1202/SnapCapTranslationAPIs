@@ -1,6 +1,6 @@
 // master.js
-const { transcribe } = require('./SpeechToText');
-const { translate } = require('./TranslateText');
+const { transcribe } = require('./speechToText');
+const { translate } = require('./translateText');
 
 async function run() {
   const audioFileName = 'english1';
