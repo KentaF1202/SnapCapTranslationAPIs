@@ -14,7 +14,8 @@ async function transcribe(filename) {
     config: {
       encoding: 'LINEAR16',
       sampleRateHertz: 48000,
-      languageCode: 'en-US',
+      languageCode: 'es-ES',
+      alternateLanguageCodes: ['en-US','ja-JP','ar'],
     },
   };
 

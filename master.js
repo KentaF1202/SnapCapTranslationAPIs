@@ -7,7 +7,7 @@ async function run() {
   const transcription = await transcribe(audioFileName);
   console.log('📝 Transcribed:', transcription);
 
-  const translated = await translate(transcription, 'es'); // Spanish
+  const translated = await translate(transcription, 'en'); // Spanish
   console.log('🌐 Translated:', translated);
 }
 
