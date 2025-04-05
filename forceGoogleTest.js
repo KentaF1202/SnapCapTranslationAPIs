@@ -3,16 +3,15 @@ const speech = require('@google-cloud/speech');
 
 const client = new speech.SpeechClient();
 
-async function transcribe(wav) {
-  const file = fs.readFileSync(wav+'.wav'); //File to be read
+async function transcribe() {
+  const file = fs.readFileSync('Recording (4).wav');
   const audioBytes = file.toString('base64');
 
-  
   const request = {
     audio: { content: audioBytes },
     config: {
       encoding: 'LINEAR16',
-      sampleRateHertz: 48000, //Hz of file
+      sampleRateHertz: 48000,
       languageCode: 'ar',
       //alternativeLanguageCodes: ['ja-JP,es-es'],
       audioChannelCount: 2,
@@ -27,4 +26,4 @@ async function transcribe(wav) {
   console.log('📝 Transcription:', transcription || '(empty)');
 }
 
-transcribe("Recording (4)").catch(console.error);
+transcribe().catch(console.error);
