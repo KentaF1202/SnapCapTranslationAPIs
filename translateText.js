@@ -1,5 +1,5 @@
 // TranslateText.js
-const { TranslationServiceClient } = require('@google-cloud/translate').v3;
+const { TranslationServiceClient } = require('@google-cloud/translate').v2;
 
 const client = new TranslationServiceClient();
 
