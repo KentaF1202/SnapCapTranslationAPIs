@@ -1,30 +1,25 @@
+// SpeechToText.js
 const fs = require('fs');
 const speech = require('@google-cloud/speech');
+const path = require('path');
 
 const client = new speech.SpeechClient();
 
-async function transcribe(wav) {
-  const file = fs.readFileSync(wav+'.wav'); //File to be read
-  const audioBytes = file.toString('base64');
+async function transcribe(filename) {
+  const filePath = path.join(__dirname, 'Assets', 'AudioWav', `${filename}.wav`);
+  const audioBytes = fs.readFileSync(filePath).toString('base64');
 
-  
   const request = {
     audio: { content: audioBytes },
     config: {
       encoding: 'LINEAR16',
-      sampleRateHertz: 48000, //Hz of file
-      languageCode: 'ar',
-      //alternativeLanguageCodes: ['ja-JP,es-es'],
-      audioChannelCount: 2,
+      sampleRateHertz: 48000,
+      languageCode: 'en-US',
     },
   };
 
   const [response] = await client.recognize(request);
-  const transcription = response.results
-    .map(result => result.alternatives[0].transcript)
-    .join('\n');
-
-  console.log('📝 Transcription:', transcription || '(empty)');
+  return response.results.map(r => r.alternatives[0].transcript).join('\n');
 }
 
-transcribe("Recording (4)").catch(console.error);
+module.exports = { transcribe };
